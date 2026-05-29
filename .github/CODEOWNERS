@@ -1,0 +1,8 @@
+# Replace with your GitHub usernames or team aliases.
+# Example: @your-org/ai-toolkit-maintainers
+* @repo-admin
+
+# Optional: stricter ownership for core policy files
+/.github/workflows/* @repo-admin
+/CONTRIBUTING.md @repo-admin
+/scripts/validate-tools.ps1 @repo-admin

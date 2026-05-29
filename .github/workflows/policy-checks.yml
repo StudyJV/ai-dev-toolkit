@@ -1,0 +1,70 @@
+name: policy-checks
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate-tools:
+    name: Validate Tool Policies
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run tool policy validation
+        shell: pwsh
+        run: ./scripts/validate-tools.ps1
+
+  check-tool-delta:
+    name: Enforce Changelog and Version on Tool Changes
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Validate changed tool folders include CHANGELOG and VERSION updates
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          BASE_SHA="${{ github.event.pull_request.base.sha }}"
+          HEAD_SHA="${{ github.event.pull_request.head.sha }}"
+
+          CHANGED_FILES=$(git diff --name-only "$BASE_SHA" "$HEAD_SHA")
+          TOOL_FOLDERS=$(echo "$CHANGED_FILES" | grep '^tools/' | cut -d/ -f1-2 | sort -u || true)
+
+          if [ -z "$TOOL_FOLDERS" ]; then
+            echo "No tool folder changes detected."
+            exit 0
+          fi
+
+          echo "Tool folders changed:"
+          echo "$TOOL_FOLDERS"
+
+          FAIL=0
+          for tool in $TOOL_FOLDERS; do
+            if ! echo "$CHANGED_FILES" | grep -q "^${tool}/CHANGELOG.md$"; then
+              echo "Missing CHANGELOG update for ${tool}"
+              FAIL=1
+            fi
+            if ! echo "$CHANGED_FILES" | grep -q "^${tool}/VERSION$"; then
+              echo "Missing VERSION update for ${tool}"
+              FAIL=1
+            fi
+          done
+
+          if [ "$FAIL" -ne 0 ]; then
+            echo "Policy failed: tool changes require CHANGELOG.md and VERSION updates."
+            exit 1
+          fi
+
+          echo "Tool delta policy passed."

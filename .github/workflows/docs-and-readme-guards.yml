@@ -1,0 +1,70 @@
+name: docs-and-readme-guards
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  markdown-links:
+    name: Check Markdown Links
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run lychee link checker
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: >-
+            --verbose
+            --no-progress
+            --exclude-mail
+            --accept 200,206,429
+            "**/*.md"
+          fail: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  readme-sections:
+    name: Enforce Tool README Sections
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate required README headings
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          REQUIRED_HEADINGS=(
+            "# "
+            "## MVP scope"
+            "## Quick start"
+            "## Commands"
+            "## Schema"
+          )
+
+          FAIL=0
+          shopt -s nullglob
+          for readme in tools/*/README.md; do
+            echo "Checking ${readme}"
+            for heading in "${REQUIRED_HEADINGS[@]}"; do
+              if ! grep -q "^${heading}" "$readme"; then
+                echo "Missing heading '${heading}' in ${readme}"
+                FAIL=1
+              fi
+            done
+          done
+
+          if [ "$FAIL" -ne 0 ]; then
+            echo "README section policy failed."
+            exit 1
+          fi
+
+          echo "README section policy passed."

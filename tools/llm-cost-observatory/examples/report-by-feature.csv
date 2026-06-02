@@ -1,0 +1,4 @@
+key,requests,errors,total_tokens,total_cost_usd,avg_latency_ms,retry_total,error_rate,retry_rate
+proposal_writer,2,1,12150,0.0872,3765,2,0.5,1
+report_summarizer,1,0,3000,0.0185,2100,0,0,0
+support_chat,2,0,2260,0.004,865,1,0,0.5

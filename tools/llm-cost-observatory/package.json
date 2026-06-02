@@ -1,0 +1,17 @@
+{
+  "name": "llm-cost-observatory",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "description": "Track and explain LLM spend by feature, model, provider, and workflow.",
+  "scripts": {
+    "start": "node src/cli.mjs",
+    "ingest": "node src/cli.mjs ingest",
+    "report": "node src/cli.mjs report",
+    "anomalies": "node src/cli.mjs anomalies",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

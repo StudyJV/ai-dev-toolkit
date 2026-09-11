@@ -1,0 +1,41 @@
+{
+  "groupBy": "feature",
+  "generated_at": "2026-09-11T00:31:41.521Z",
+  "totals": {
+    "traces": 6,
+    "labeled": 5,
+    "hit_rate": 0.6,
+    "mrr": 0.5,
+    "precision_at_k": 0.416667,
+    "recall_at_k": 0.6,
+    "grounded_rate": 0.5,
+    "answer_match_rate": 0.75,
+    "failure_rate": 0.666667
+  },
+  "rows": [
+    {
+      "key": "billing-bot",
+      "traces": 2,
+      "hit_rate": 1,
+      "mrr": 1,
+      "precision_at_k": 1,
+      "recall_at_k": 1,
+      "grounded_rate": 0.5,
+      "answer_match_rate": 0.5,
+      "failure_rate": 1,
+      "avg_latency_ms": 1285
+    },
+    {
+      "key": "docs-assistant",
+      "traces": 4,
+      "hit_rate": 0.333333,
+      "mrr": 0.25,
+      "precision_at_k": 0.125,
+      "recall_at_k": 0.333333,
+      "grounded_rate": 0.5,
+      "answer_match_rate": 1,
+      "failure_rate": 0.5,
+      "avg_latency_ms": 1005
+    }
+  ]
+}

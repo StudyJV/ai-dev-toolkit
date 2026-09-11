@@ -1,0 +1,47 @@
+{
+  "groupBy": "feature",
+  "window": "30d",
+  "generated_at": "2026-09-11T00:31:41.316Z",
+  "totals": {
+    "requests": 5,
+    "errors": 1,
+    "total_tokens": 17410,
+    "total_cost_usd": 0.1097,
+    "error_rate": 0.2
+  },
+  "rows": [
+    {
+      "key": "proposal_writer",
+      "requests": 2,
+      "errors": 1,
+      "total_tokens": 12150,
+      "total_cost_usd": 0.0872,
+      "avg_latency_ms": 3765,
+      "retry_total": 2,
+      "error_rate": 0.5,
+      "retry_rate": 1
+    },
+    {
+      "key": "report_summarizer",
+      "requests": 1,
+      "errors": 0,
+      "total_tokens": 3000,
+      "total_cost_usd": 0.0185,
+      "avg_latency_ms": 2100,
+      "retry_total": 0,
+      "error_rate": 0,
+      "retry_rate": 0
+    },
+    {
+      "key": "support_chat",
+      "requests": 2,
+      "errors": 0,
+      "total_tokens": 2260,
+      "total_cost_usd": 0.004,
+      "avg_latency_ms": 865,
+      "retry_total": 1,
+      "error_rate": 0,
+      "retry_rate": 0.5
+    }
+  ]
+}

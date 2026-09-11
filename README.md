@@ -8,6 +8,9 @@ Ship small tools that solve real engineering pain around LLM apps: cost, quality
 ## Current tools
 - `tools/llm-cost-observatory` - track and explain LLM spend by feature, model, and workflow.
 
+## Current integrations
+- `integrations/` - capture usage events from Codex, Cursor, and Claude. See [`integrations/README.md`](integrations/README.md).
+
 ## Planned tools
 - `tools/prompt-evals-starter`
 - `tools/rag-debug-kit`

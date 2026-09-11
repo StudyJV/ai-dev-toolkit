@@ -16,3 +16,8 @@ dist/
 # Temp
 *.tmp
 *.swp
+
+# Local tool stores
+.lco/
+.rdk/
+templates/*/.store.jsonl

@@ -1,0 +1,17 @@
+{
+  "name": "rag-debug-kit",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Score RAG retrieval traces and surface why answers go wrong.",
+  "scripts": {
+    "start": "node src/cli.mjs",
+    "analyze": "node src/cli.mjs analyze",
+    "report": "node src/cli.mjs report",
+    "failures": "node src/cli.mjs failures",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

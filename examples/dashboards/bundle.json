@@ -1,0 +1,95 @@
+{
+  "generated_at": "2026-09-11T00:31:41.621Z",
+  "sources": {
+    "cost": "examples/dashboards/sample-cost-report.json",
+    "rag": "examples/dashboards/sample-rag-report.json"
+  },
+  "cost": {
+    "groupBy": "feature",
+    "window": "30d",
+    "generated_at": "2026-09-11T00:31:41.316Z",
+    "totals": {
+      "requests": 5,
+      "errors": 1,
+      "total_tokens": 17410,
+      "total_cost_usd": 0.1097,
+      "error_rate": 0.2
+    },
+    "rows": [
+      {
+        "key": "proposal_writer",
+        "requests": 2,
+        "errors": 1,
+        "total_tokens": 12150,
+        "total_cost_usd": 0.0872,
+        "avg_latency_ms": 3765,
+        "retry_total": 2,
+        "error_rate": 0.5,
+        "retry_rate": 1
+      },
+      {
+        "key": "report_summarizer",
+        "requests": 1,
+        "errors": 0,
+        "total_tokens": 3000,
+        "total_cost_usd": 0.0185,
+        "avg_latency_ms": 2100,
+        "retry_total": 0,
+        "error_rate": 0,
+        "retry_rate": 0
+      },
+      {
+        "key": "support_chat",
+        "requests": 2,
+        "errors": 0,
+        "total_tokens": 2260,
+        "total_cost_usd": 0.004,
+        "avg_latency_ms": 865,
+        "retry_total": 1,
+        "error_rate": 0,
+        "retry_rate": 0.5
+      }
+    ]
+  },
+  "rag": {
+    "groupBy": "feature",
+    "generated_at": "2026-09-11T00:31:41.521Z",
+    "totals": {
+      "traces": 6,
+      "labeled": 5,
+      "hit_rate": 0.6,
+      "mrr": 0.5,
+      "precision_at_k": 0.416667,
+      "recall_at_k": 0.6,
+      "grounded_rate": 0.5,
+      "answer_match_rate": 0.75,
+      "failure_rate": 0.666667
+    },
+    "rows": [
+      {
+        "key": "billing-bot",
+        "traces": 2,
+        "hit_rate": 1,
+        "mrr": 1,
+        "precision_at_k": 1,
+        "recall_at_k": 1,
+        "grounded_rate": 0.5,
+        "answer_match_rate": 0.5,
+        "failure_rate": 1,
+        "avg_latency_ms": 1285
+      },
+      {
+        "key": "docs-assistant",
+        "traces": 4,
+        "hit_rate": 0.333333,
+        "mrr": 0.25,
+        "precision_at_k": 0.125,
+        "recall_at_k": 0.333333,
+        "grounded_rate": 0.5,
+        "answer_match_rate": 1,
+        "failure_rate": 0.5,
+        "avg_latency_ms": 1005
+      }
+    ]
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "RagTrace",
+  "type": "object",
+  "required": ["timestamp", "query_id", "query", "retrieved", "answer"],
+  "properties": {
+    "timestamp": { "type": "string", "format": "date-time" },
+    "query_id": { "type": "string" },
+    "query": { "type": "string" },
+    "feature": { "type": "string" },
+    "retrieved": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["chunk_id", "text"],
+        "properties": {
+          "chunk_id": { "type": "string" },
+          "text": { "type": "string" },
+          "score": { "type": "number" },
+          "is_relevant": { "type": "boolean" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "answer": { "type": "string" },
+    "expected_answer": { "type": "string" },
+    "expected_chunk_ids": { "type": "array", "items": { "type": "string" } },
+    "latency_ms": { "type": "integer", "minimum": 0 },
+    "metadata": { "type": "object", "additionalProperties": true }
+  },
+  "additionalProperties": false
+}
